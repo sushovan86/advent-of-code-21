@@ -28,7 +28,7 @@ fun part(input: List<String>, days: Int): BigInteger {
 }
 
 private fun remainLifeCountArray(input: List<String>) =
-    Array<BigInteger>(9) { BigInteger.ZERO }
+    RemainingLifeCounter(9) { BigInteger.ZERO }
         .apply {
             input.firstOrNull()
                 ?.split(",")
