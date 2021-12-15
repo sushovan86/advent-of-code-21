@@ -8,11 +8,11 @@ import kotlin.system.measureTimeMillis
 
 data class Point(val x: Int = 0, val y: Int = 0) {
 
-    infix fun shareAxisWith(other: Point): Boolean =
+    infix fun isInSameAxisWith(other: Point): Boolean =
         x == other.x || y == other.y
 
-    infix fun shareAxisOrDiagonalWith(other: Point): Boolean =
-        shareAxisWith(other) || ((x - other.x).absoluteValue == (y - other.y).absoluteValue)
+    infix fun isInSameAxisOrInDiagonalWith(other: Point): Boolean =
+        isInSameAxisWith(other) || ((x - other.x).absoluteValue == (y - other.y).absoluteValue)
 
 
     infix fun lineTo(other: Point): List<Point> {
@@ -39,11 +39,11 @@ fun solve(input: List<String>, criteria: (Pair<Point, Point>) -> Boolean): Int =
         .count { it.value > 1 }
 
 fun part2(input: List<String>): Int = solve(input) { (point1, point2) ->
-    point1 shareAxisOrDiagonalWith point2
+    point1 isInSameAxisOrInDiagonalWith point2
 }
 
 fun part1(input: List<String>): Int = solve(input) { (point1, point2) ->
-    point1 shareAxisWith point2
+    point1 isInSameAxisWith point2
 }
 
 fun parseInput(input: List<String>): List<Pair<Point, Point>> =
